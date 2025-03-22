@@ -10,9 +10,7 @@ const navLinks = $$("nav a");
 let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
-    { url: 'contact/', title: 'Contacts' },
     { url: 'resume/', title: 'Resume' },
-    { url: 'meta/', title: 'Meta'},
     { url: 'https://github.com/JaydenHuang8', title: 'GitHub'},
     // add the rest of your pages here
  ];
@@ -37,7 +35,7 @@ for (let p of pages) {
         url = '../' + url;
     } else {
         // home page
-        url = 'https://jaydenhuang8.github.io/portfolio/' + url
+        url = 'https://jaydenhuang8.github.io/portfolio_site/' + url
     }
 
     
@@ -59,41 +57,6 @@ for (let p of pages) {
 }
 console.log('nav done');
 
-document.body.insertAdjacentHTML(
-    'afterbegin',
-    `
-      <label class="color-scheme">
-          Theme:
-          <select id = 'color-scheme-select'>
-                <option value="light dark">Automatic</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-          </select>
-      </label>
-    `
-);
-
-const select = document.getElementById('color-scheme-select');
-
-if (localStorage.colorScheme) {
-    // if there is already a saved color
-    const savedScheme = localStorage.colorScheme;
-    document.documentElement.style.setProperty('color-scheme', savedScheme); // Apply the saved scheme
-    select.value = savedScheme; // Update the dropdown to reflect the saved preference
-}
-
-select.addEventListener('input', function (event) {
-    const selectedScheme = event.target.value;
-
-    console.log('Color scheme changed to', selectedScheme);
-
-    // Save the user's preference to localStorage
-    localStorage.colorScheme = selectedScheme;
-
-    console.log('color scheme changed to', event.target.value);
-    
-    document.documentElement.style.setProperty('color-scheme', selectedScheme);
-});
 
 export async function fetchJSON(url) {
     try {
