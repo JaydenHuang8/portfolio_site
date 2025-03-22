@@ -1,0 +1,588 @@
+:root {
+  --color-accent: oklch(65% 50% 0);
+  --border-color: oklch(50% 10% 200 / 40%);
+  --light-brown-color: oklch(97.01% 0.03 90.3);
+  color-scheme: light dark;
+}
+
+body {
+    /* Set line height to 1.5 times the font size
+         and use the OS’s UI font as the website font
+       */
+    font: 100%/1.5 system-ui;
+    max-width: min(120ch, 80vw);
+    margin-inline: auto;
+    padding: 1rem;
+}
+
+nav {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.8em;
+}
+nav a:hover {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.3em;
+}
+.current {
+  font-weight: bold;
+  border-bottom: 0.4em solid var(--border-color);
+  padding-bottom: 0.3em;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  gap: 1em; 
+  width: 100%;
+  font: inherit;
+}
+
+.field-group {
+  display: grid;
+  grid-template-columns: subgrid; 
+  grid-column: 1 / -1; 
+  gap: 1em;  
+}
+
+button {
+  grid-column: 1 / -1;
+}
+
+
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+  padding: 0.5em;
+ }
+ /* Image should have a fixed height for alignment */
+article img {
+  width: 100%;
+  height: 150px; /* Fixed height */
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+}
+
+/* Ensure description takes up flexible space */
+article > div p:first-of-type {
+  font-size: 16px;
+  
+  margin: 0;
+}
+
+/* Ensure year always aligns to the bottom */
+article > div p:last-of-type {
+  font-size: 16px;
+  color: #777;
+  font-style: italic;
+  margin-top: auto; /* Pushes it to the bottom */
+  font-family: Baskerville;
+  font-variant-numeric: oldstyle-nums;
+}
+
+
+h1 {
+  font-size: 400%;
+}
+
+h2 {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;  
+  right: 1rem;    
+  font-size: 80%; 
+  font-family: inherit; 
+  padding: 0.5rem; 
+}
+
+#profile-stats {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+  gap: 1em; /* Increase space between items */
+  text-align: left;
+
+
+  /* 🔹 Box Styling */
+  border: 2px solid var(--border-color);  /* Adds a border around the stats */
+  padding: 20px;           /* Adds space inside the box */
+  border-radius: 10px;     /* Rounds the corners */
+  background-color: var(--light-brown-color); /* Light background color */
+  max-width: 100%; /* Prevents it from stretching too wide */
+  margin: 20px auto; /* Centers the box horizontally */
+}
+
+dt {
+  font-size: 14px;
+  color: gray;
+  text-transform: uppercase;
+  grid-row: 1;
+  text-align: left;
+}
+
+dd {
+  font-size: 26px;
+  margin: 0;
+  grid-row: 2;
+  text-align: left;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr; /* First column for labels, second for values */
+  gap: 5px 15px; /* Space between rows and columns */
+  align-items: center;
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+dl.info dt {
+  font-size: 14px;
+  color: gray;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+dl.info dd {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#commit-tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: var(--light-brown-color);
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  pointer-events: none; /* Prevents cursor interference */
+  
+  transition: opacity 200ms ease-in-out;
+  border: 2px solid var(--border-color);
+}
+
+circle {
+  transition: transform 200ms ease-in-out;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+  fill: #fdb750; /* Optional: Change color on hover */
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+/* Style for gridlines */
+.gridlines line {
+  stroke: #ddd; /* Light gray color */
+  stroke-opacity: 0.7; /* Slightly transparent */
+  stroke-dasharray: 4 4; /* Creates a dashed line */
+}
+
+/* Hide the main axis line */
+.gridlines path {
+  stroke: none;
+}
+
+
+.selection {
+  fill: rgba(50, 150, 255, 0.15); /* Light blue semi-transparent */
+  stroke: #007bff; /* Bright blue border */
+  stroke-width: 2px;
+  stroke-opacity: 1;
+  stroke-dasharray: 6 3; /* Uniform dashes */
+  stroke-linejoin: round; /* Smooth corners */
+  animation: marching-ants 1.5s linear infinite; /* Cool animated effect */
+}
+
+/* ✨ Smooth Animated Dashed Border */
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; 
+  }
+}
+
+/* 📌 Language breakdown container with structured grid */
+#language-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); /* Auto-adjusts columns */
+  gap: 0.5rem 1rem; /* Space between rows and columns */
+  align-items: center;
+  background: var(--background-color, #f9f9f9); /* Light background */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--border-color, #ddd);
+  max-width: 100%; /* Takes full width */
+  box-shadow: 0.125rem 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+#language-breakdown dt, 
+#language-breakdown dd {
+  text-align: center;
+}
+
+#language-breakdown dt {
+  font-size: 0.875rem; /* ~14px */
+  font-weight: bold;
+  color: var(--text-color, #333);
+  text-transform: uppercase;
+}
+
+#language-breakdown dd {
+  font-size: 1rem; /* ~16px */
+  font-weight: normal;
+  margin: 0;
+  color: var(--text-color, #555);
+}
+
+#language-breakdown dt:first-child {
+  grid-column: span 1; /* Ensures the first item spans correctly */
+}
+
+#language-breakdown dd:last-child {
+  margin-bottom: 0.5rem;
+}
+
+
+
+
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+
+/* Container that holds the pie chart and legend */
+.container {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically align the pie chart and legend */
+  gap: 1.5em; /* Space between the chart and legend */
+  max-width: 800px; /* Optional: Adjust container width */
+  margin: auto; /* Centering */
+}
+
+/* Pie chart should not shrink */
+.container svg {
+  flex: 0 0 auto; /* Prevents the chart from shrinking */
+  width: 250px; /* Adjust size as needed */
+  height: 250px;
+}
+
+/* Legend should take all available space */
+.legend {
+  flex: 1; /* Makes the legend occupy remaining space */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); /* Responsive layout */
+  gap: 1em;
+  padding: 0.75em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Legend items */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  font-size: 14px;
+}
+
+/* Color swatches */
+.swatch {
+  display: inline-block;
+  width: 16px; /* Bigger swatch */
+  height: 16px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+}
+
+.searchBar {
+  width: 100%; /* Makes the input span the full width */
+  padding: 0.75em; /* Adds spacing for better UX */
+  font-size: 16px; /* Increases text size for readability */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Smooth rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important; /*highlight color*/
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
+
+/* Change the legend's swatch color when selected */
+.legend-selected .swatch {
+  --color: oklch(60% 45% 0) !important; /*highlight color*/
+  background-color: var(--color); /* Override background */
+}
+
+
+#filter_ui {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  width: 100%;
+}
+
+#commit_slider {
+  width: 100%; /* Make the slider span full width */
+}
+
+#commit_time {
+  display: block;  /* Push to a new line */
+  text-align: right; /* Align text to the left */
+  font-weight: bold;
+  margin-top: 5px; /* Add spacing */
+}
+
+@starting-style {
+  r: 0;
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  max-width: 600px;
+  max-width: 100%;
+  min-width: 600px;
+  box-sizing: border-box;
+}
+
+.commit-group {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.file-row {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  gap: 5px;
+}
+
+.file-row p {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  
+}
+
+.file-visualization {
+  display: flex;
+  flex-wrap: wrap; /* Allow dots to wrap to new lines */
+  align-items: center;
+  gap: 3px; /* Adjust spacing between dots */
+  max-width: 100%; /* Ensure it doesn’t stretch too far */
+}
+
+.line-dot {
+  display: inline-block;
+  width: 10px; /* Adjust circle size */
+  height: 10px;
+  border-radius: 50%;
+}
+
+
+
+
+#scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+
+#scroll-container-file {
+  grid-column: 1;
+  position: relative;
+  width: 400px; /* Set a fixed width to prevent movement */
+  max-width: 100%; /* Prevents it from exceeding the screen */
+  min-width: 300px; /* Ensures it doesn't shrink too much */
+  height: 350px; /* Keep height consistent */
+  overflow-y: auto; /* Enable smooth scrolling */
+  border: 1px solid #ccc;
+
+  background: white; /* Keep it visually stable */
+
+}
+
+
+#spacer-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.item {
+  height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+.commit-item-file {
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  width: 100%;
+  min-height: 50px; /* Set a reasonable minimum height */
+}
+
+.commit-item-file p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: normal; /* Ensure text wraps */
+}
+
+.commit-item-file a {
+  color: steelblue;
+  text-decoration: none;
+}
+
+.commit-item-file a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+/* feel free to play with this to make your scrolly more seemless with your plot */
+#scroll-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#chart {
+  grid-column: 2;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item {
+  height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+
+.commit-item {
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  width: 100%;
+  min-height: 50px; /* Set a reasonable minimum height */
+}
+
+.commit-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: normal; /* Ensure text wraps */
+}
+
+.commit-item a {
+  color: steelblue;
+  text-decoration: none;
+}
+
+.commit-item a:hover {
+  text-decoration: underline;
+}
+

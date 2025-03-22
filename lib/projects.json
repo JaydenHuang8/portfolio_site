@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Bikewatch: Boston & Cambridge ",
+        "year": "2025",
+        "image": "../images/bikewatching_project_screenshot.png",
+        "description": "This is a dynamic visualization project that tracks and analyzes bike traffic patterns in Boston and Cambridge. By leveraging Mapbox, D3.js, and public bike-share data, this project provides real-time insights into bike departures, arrivals, and total traffic at various stations."
+    },
+    {
+        "title": "LOL 2022 pro play analysis",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Conducted an in-depth analysis of professional League of Legends match data from the 2022 season to identify performance differences across leagues and player positions."
+    },
+    {
+        "title": "Taylor Swift Search Engine",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Created a search engine for Taylor Swift music using python and baby panda."
+    },
+    {
+        "title": "Ipsam aspernatur impedit cum!",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Officiis et excepturi quae doloremque laudantium, nulla, quas nostrum distinctio, libero facere eligendi fugiat assumenda consequatur? Atque incidunt molestiae iste delectus exercitationem. Odio, ratione illum. Officiis optio rerum voluptate at?"
+    },
+    {
+        "title": "Optio dolorem incidunt eos.",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Distinctio sint beatae dolorem totam culpa debitis exercitationem consequuntur non quidem atque enim fugit odio numquam quas pariatur laboriosam odit, eaque nobis fuga obcaecati nemo doloremque, voluptates quod ratione. Placeat."
+    },
+    {
+        "title": "Accusamus expedita repudiandae fugit!",
+        "year": "2023",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "At quae fuga, doloremque ab commodi id ad sequi numquam beatae cumque veritatis porro natus eligendi pariatur aut repellat illo similique quo! Cupiditate cum officiis nemo ab! Quasi, provident alias."
+    },
+    {
+        "title": "Aut dolor exercitationem rerum!",
+        "year": "2020",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Dolores cupiditate voluptates sit vitae quisquam minus, officiis quas itaque inventore voluptatem! Reiciendis id, repudiandae sint iste eaque corrupti itaque culpa quis iusto vero ullam quas rerum, corporis quae quam!"
+    },
+    {
+        "title": "Provident saepe fugiat eaque?",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Dignissimos nesciunt pariatur rem voluptate? Nam impedit velit deleniti nihil earum! Fugit ab et nesciunt praesentium, ullam perspiciatis iusto impedit dicta culpa. Veniam, error placeat eum a vero ut nemo?"
+    },
+    {
+        "title": "Quaerat soluta quae minima.",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Quas ut cupiditate corrupti, quod tenetur molestias temporibus, eligendi voluptatem provident hic odio sint? Distinctio earum et itaque quaerat ducimus dolorem deserunt cumque, aspernatur voluptate! Ad minima dicta voluptas qui."
+    },
+    {
+        "title": "Sed adipisci sunt error!",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Dolorem laudantium earum porro soluta aliquam ab maiores eligendi, sint iste temporibus deserunt quaerat inventore reiciendis, provident dolore tenetur expedita. Consequuntur nisi fugit iure minus natus ducimus cum saepe a!"
+    },
+    {
+        "title": "Soluta dicta magnam pariatur!",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Aperiam obcaecati asperiores autem rerum quis, cumque sed itaque ullam, qui explicabo fugiat? Dolores, aut expedita aliquid optio dolore, reiciendis quaerat officia necessitatibus ullam provident in tenetur. Quasi, voluptates id."
+    },
+    {
+        "title": "Ex molestiae suscipit numquam?",
+        "year": "2024",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Modi, obcaecati, alias fugit nemo iste veritatis sint officiis hic assumenda tempora repudiandae aut repellendus dolore ad eveniet repellat unde ipsa nobis mollitia earum nam culpa? Fuga iste totam debitis."
+    }
+]
