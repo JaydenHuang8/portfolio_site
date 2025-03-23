@@ -2,7 +2,8 @@
     {
         "title": "Bikewatch: Boston & Cambridge ",
         "year": "2025",
-        "image": "../images/bikewatching_project_screenshot.png",
+        "image": "./images/bikewatching_project_screenshot.png", 
+        // need to add one dot here
         "description": "This is a dynamic visualization project that tracks and analyzes bike traffic patterns in Boston and Cambridge. By leveraging Mapbox, D3.js, and public bike-share data, this project provides real-time insights into bike departures, arrivals, and total traffic at various stations."
     },
     {

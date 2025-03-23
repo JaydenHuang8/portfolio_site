@@ -1,10 +1,50 @@
-import { fetchJSON, renderProjects, countProjects } from '../global.js';
+import { fetchJSON, countProjects } from '../global.js';
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
 const projects = await fetchJSON('../lib/projects.json');
 
 const projectsContainer = document.querySelector('.projects');
-renderProjects(projects, projectsContainer, 'h2');
+
+function renderProjectsProj(project, containerElement, headingLevel = 'h2') {
+  // Your code will go here
+  if (!(containerElement instanceof HTMLElement)) {
+      console.error('Invalid container element provided.');
+      return;
+  } // make sure containerElement is a valid DOM
+
+  // Ensure headingLevel is valid (only allow h1-h6)
+  if (!/^h[1-6]$/.test(headingLevel)) {
+      console.warn(`Invalid heading level "${headingLevel}". Defaulting to h2.`);
+      headingLevel = 'h2'; // Default to h2 if input is invalid
+  }
+ 
+
+  containerElement.innerHTML = ''; //outside loop
+  // makesure its container empty
+  project.forEach(p => {
+      const title = p.title || 'Untitled Project';
+      let image = p.image || 'https://vis-society.github.io/labs/2/images/empty.svg';
+      const year = p.year || 'unknown';
+
+      //image coming
+      const description = p.description || 'No description available.';
+      console.log(image);
+      const article = document.createElement('article');
+      article.innerHTML = `
+      <${headingLevel}>${title}</${headingLevel}>
+      <img src=".${image}" alt="${title}" onerror="this.src='https://vis-society.github.io/labs/2/images/empty.svg';">
+      <div>
+          <p>${description}</p>
+          <br />
+          <p>c. ${year}</p>
+      </div>
+      `;
+      
+      containerElement.appendChild(article);
+  });
+}
+
+renderProjectsProj(projects, projectsContainer, 'h2');
 
 const title = document.querySelector('h1');
 countProjects(projects, title)
