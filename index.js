@@ -5,7 +5,7 @@ const latestProjects = projects.slice(0, 3);
 console.log(latestProjects);
 const projectsContainer = document.querySelector('.projects');
 
-renderProjects(latestProjects, projectsContainer, 'h2');
+renderProjects(latestProjects, projectsContainer, true, 'h2');
 
 const githubData = await fetchGitHubData('JaydenHuang8');
 
@@ -22,4 +22,3 @@ if (profileStats) {
       `;
   }
 
-  

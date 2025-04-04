@@ -15,47 +15,74 @@ body {
     padding: 1rem;
 }
 
-nav {
+.menu {
   display: flex;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 1em;
   margin-top: 1em;
 }
-nav a {
+
+.menu a {
   flex: 1;
   text-decoration: none;
   color: inherit;
   text-align: center;
   padding: 0.8em;
 }
-nav a:hover {
+
+.menu a:hover {
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
   border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: 0.3em;
 }
-.current {
+
+.menu a.current {
   font-weight: bold;
   border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.3em;
 }
 
-form {
+
+.projects {
   display: grid;
-  grid-template-columns: auto 1fr; 
-  gap: 1em; 
-  width: 100%;
-  font: inherit;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+  padding: 1em 0;
 }
 
-.field-group {
-  display: grid;
-  grid-template-columns: subgrid; 
-  grid-column: 1 / -1; 
-  gap: 1em;  
+
+.project-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  margin: 1em 0;
+  transition: box-shadow 0.3s ease;
 }
 
-button {
-  grid-column: 1 / -1;
+.project-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+
+
+
+
+
+.project-link {
+  margin-top: 8px;
+}
+
+.project-link a {
+  color: #0066cc;
+  text-decoration: underline;
 }
 
 
@@ -72,12 +99,34 @@ article {
   gap: 1em;
   padding: 0.5em;
  }
- /* Image should have a fixed height for alignment */
-article img {
-  width: 100%;
-  height: 150px; /* Fixed height */
-  object-fit: cover;
-  border-radius: 5px;
+
+ /* project transition */
+ .project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+ .image-box {
+  display: flex;
+  align-items: flex-end; /* Aligns child (image) to bottom */
+  justify-content: center; /* Optional: center horizontally */
+  height: 200px; /* Or whatever height you want */
+}
+
+.image-box img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -121,9 +170,23 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.5rem; 
 }
 
+
+/* The following is for github stats */
 #profile-stats {
   text-align: center;
   font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  margin: 1em 0;
+  transition: box-shadow 0.3s ease;
+}
+
+#profile-stats:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 dl {
@@ -131,15 +194,6 @@ dl {
   grid-template-columns: repeat(4, 1fr); /* Four equal columns */
   gap: 1em; /* Increase space between items */
   text-align: left;
-
-
-  /* 🔹 Box Styling */
-  border: 2px solid var(--border-color);  /* Adds a border around the stats */
-  padding: 20px;           /* Adds space inside the box */
-  border-radius: 10px;     /* Rounds the corners */
-  background-color: var(--light-brown-color); /* Light background color */
-  max-width: 100%; /* Prevents it from stretching too wide */
-  margin: 20px auto; /* Centers the box horizontally */
 }
 
 dt {
@@ -184,112 +238,13 @@ dl.info dd {
   margin: 0;
 }
 
-#commit-tooltip {
-  position: fixed;
-  top: 1em;
-  left: 1em;
-  background: var(--light-brown-color);
-  color: black;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  pointer-events: none; /* Prevents cursor interference */
-  
-  transition: opacity 200ms ease-in-out;
-  border: 2px solid var(--border-color);
-}
-
-circle {
-  transition: transform 200ms ease-in-out;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-circle:hover {
-  transform: scale(1.5);
-  fill: #fdb750; /* Optional: Change color on hover */
-}
-
-circle.selected {
-  fill: #ff6b6b;
-}
-
-/* Style for gridlines */
-.gridlines line {
-  stroke: #ddd; /* Light gray color */
-  stroke-opacity: 0.7; /* Slightly transparent */
-  stroke-dasharray: 4 4; /* Creates a dashed line */
-}
-
-/* Hide the main axis line */
-.gridlines path {
-  stroke: none;
-}
-
-
-.selection {
-  fill: rgba(50, 150, 255, 0.15); /* Light blue semi-transparent */
-  stroke: #007bff; /* Bright blue border */
-  stroke-width: 2px;
-  stroke-opacity: 1;
-  stroke-dasharray: 6 3; /* Uniform dashes */
-  stroke-linejoin: round; /* Smooth corners */
-  animation: marching-ants 1.5s linear infinite; /* Cool animated effect */
-}
-
-/* ✨ Smooth Animated Dashed Border */
-@keyframes marching-ants {
-  to {
-    stroke-dashoffset: -8; 
-  }
-}
-
-/* 📌 Language breakdown container with structured grid */
-#language-breakdown {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); /* Auto-adjusts columns */
-  gap: 0.5rem 1rem; /* Space between rows and columns */
-  align-items: center;
-  background: var(--background-color, #f9f9f9); /* Light background */
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 0.1rem solid var(--border-color, #ddd);
-  max-width: 100%; /* Takes full width */
-  box-shadow: 0.125rem 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-
-#language-breakdown dt, 
-#language-breakdown dd {
-  text-align: center;
-}
-
-#language-breakdown dt {
-  font-size: 0.875rem; /* ~14px */
-  font-weight: bold;
-  color: var(--text-color, #333);
-  text-transform: uppercase;
-}
-
-#language-breakdown dd {
-  font-size: 1rem; /* ~16px */
-  font-weight: normal;
-  margin: 0;
-  color: var(--text-color, #555);
-}
-
-#language-breakdown dt:first-child {
-  grid-column: span 1; /* Ensures the first item spans correctly */
-}
-
-#language-breakdown dd:last-child {
-  margin-bottom: 0.5rem;
-}
 
 
 
 
+
+
+/* project page styles */
 
 #projects-pie-plot {
   max-width: 20em;

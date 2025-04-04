@@ -16,6 +16,7 @@ let pages = [
  ];
  
 let nav = document.createElement('nav');
+nav.classList.add('menu');
 document.body.prepend(nav);
 
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
@@ -76,44 +77,79 @@ export async function fetchJSON(url) {
     }
 }
 
-export function renderProjects(project, containerElement, headingLevel = 'h2') {
-    // Your code will go here
+export function renderProjects(project, containerElement, home, headingLevel = 'h2') {
     if (!(containerElement instanceof HTMLElement)) {
         console.error('Invalid container element provided.');
         return;
-    } // make sure containerElement is a valid DOM
+    }
 
-    // Ensure headingLevel is valid (only allow h1-h6)
     if (!/^h[1-6]$/.test(headingLevel)) {
         console.warn(`Invalid heading level "${headingLevel}". Defaulting to h2.`);
-        headingLevel = 'h2'; // Default to h2 if input is invalid
+        headingLevel = 'h2';
     }
-   
 
-    containerElement.innerHTML = ''; //outside loop
-    // makesure its container empty
+    containerElement.innerHTML = ''; // Clear content
+
     project.forEach(p => {
         const title = p.title || 'Untitled Project';
         let image = p.image || 'https://vis-society.github.io/labs/2/images/empty.svg';
         const year = p.year || 'unknown';
-
-        //image coming
         const description = p.description || 'No description available.';
-        console.log(image);
+        const site = p.site_link;
+        const repo = p.repo_link;
+
+        if (!home && !/^https?:\/\//.test(image)) {
+            image = `.${image}`;
+        }
+
+        let navHTML = '';
+        if (site || repo) {
+            navHTML = `<nav class="project-link">`;
+
+            if (site) {
+                navHTML += `
+                    <a href="${site}" target="_blank" rel="noopener noreferrer">
+                        View Site
+                    </a>`;
+            }
+
+            if (repo) {
+                navHTML += `
+                    <a href="${repo}" target="_blank" rel="noopener noreferrer">
+                        View Code
+                    </a>`;
+            }
+
+            navHTML += `</nav>`;
+        }
+
         const article = document.createElement('article');
+        article.classList.add('project-card'); 
         article.innerHTML = `
-        <${headingLevel}>${title}</${headingLevel}>
-        <img src="${image}" alt="${title}" onerror="this.src='https://vis-society.github.io/labs/2/images/empty.svg';">
-        <div>
-            <p>${description}</p>
-            <br />
-            <p>c. ${year}</p>
-        </div>
+            <${headingLevel}>${title}</${headingLevel}>
+            <div class="image-box">
+                <img src="${image}" alt="${title}" onerror="this.src='https://vis-society.github.io/labs/2/images/empty.svg';">
+            </div>
+            <div>
+                <p>${description}</p>
+                ${navHTML}
+                <br />
+                <p>c. ${year}</p>
+            </div>
         `;
-        
+
         containerElement.appendChild(article);
+
+        // Add fade-in transition after DOM paint
+        requestAnimationFrame(() => {
+            article.classList.add('fade-in');
+        });
     });
 }
+
+
+
+
 
 export function countProjects(project, titleElement) {
     // Check if projects is an array
