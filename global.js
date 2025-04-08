@@ -10,7 +10,7 @@ const navLinks = $$("nav a");
 let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
-    { url: 'resume/', title: 'Resume' },
+    // { url: 'resume/', title: 'Resume' },
     { url: 'https://github.com/JaydenHuang8', title: 'GitHub'},
     // add the rest of your pages here
  ];

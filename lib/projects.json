@@ -5,7 +5,7 @@
         "image": "./images/who_else_piechart.png", 
         "site_link": "https://8kevin24.github.io/dsc106final/",
         "repo_link": "https://github.com/8kevin24/dsc106final",
-        "description": "This is an interactive website that takes in information about a surgery and uses a knn model to predict the survival rate of the surgery. It also includes an interactive piechart that allows the user to discover similar cases in the database."
+        "description": "This is an interactive website that takes in information about a surgery and uses a KNN model to predict the survival rate of the surgery. It also includes an interactive piechart that allows the user to discover similar cases in the database."
     },
     {
         "title": "Bikewatch: Boston & Cambridge",

@@ -9,7 +9,7 @@ body {
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
        */
-    font: 100%/1.5 system-ui;
+    font: 100%/1.5 Calibri, sans-serif;
     max-width: min(120ch, 80vw);
     margin-inline: auto;
     padding: 1rem;
@@ -41,6 +41,23 @@ body {
   border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.3em;
 }
+
+/* the following is for the intro block in front page */
+.intro_block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.intro_writing {
+  flex: 1;
+}
+
+.intro_image {
+  flex-shrink: 0;
+}
+
 
 
 .projects {
@@ -121,6 +138,7 @@ article {
   align-items: flex-end; /* Aligns child (image) to bottom */
   justify-content: center; /* Optional: center horizontally */
   height: 200px; /* Or whatever height you want */
+  padding: 1rem;
 }
 
 .image-box img {
